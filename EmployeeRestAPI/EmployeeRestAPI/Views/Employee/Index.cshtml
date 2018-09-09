@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <h1>Information Student</h1>
+
+    <form class="w3-container" name="myForm">
+
+        Search<input ng-model="search_student" placeholder="Enter Your Search Terms" class="w3-input w3-animate-input" type="text" style="width:250px"><br>
+        
+        <p>LastName<input name="fullName" ng-model="addFullName" class="w3-input w3-animate-input" type="text" style="width:250px" required><span style="color: red" ng-show="myForm.fullName.$touched && myForm.fullName.$invalid">Họ và tên chưa nhập.</span></p><br>
+
+        <p>FirstName<input name="age" ng-model="addAge" class="w3-input w3-animate-input" type="text" style="width:250px" required><span style="color: red" ng-show="myForm.age.$touched && myForm.age.$invalid">Tuổi chưa nhập.</span></p><br>
+        <p>Salary<input name="country" ng-model="addCountry" class="w3-input w3-animate-input" type="text" style="width:250px" required><span style="color: red" ng-show="myForm.country.$touched && myForm.country.$invalid">Quốc gia chưa nhập.</span></p><br>
+
+
+        <button ng-click="update_Student()" class="w3-btn w3-green w3-ripple">&#10004; Save Changes</button>
+        <button class="w3-btn w3-green w3-ripple" ng-click="addStudent()">&#10000; Add</button>
+
+    </form>
+
+
+
+    <br><br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Salary</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in students | filter:search_student">
+                <td>{{$index + 1}}</td>
+                <td>{{student.LastName}}</td>
+                <td>{{student.FirstName}}</td>
+                <td>{{student.Salary}}</td>
+                <td>
+                    <button class="w3-btn w3-ripple" ng-click="updateStudent($index)">&#9998; Edit</button>
+                    <button class="w3-btn w3-ripple" ng-click="deleteStudent($index)">&#10006; Delete</button>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
